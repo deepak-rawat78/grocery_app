@@ -6,6 +6,7 @@ const greyScaleBlack03 = '#8891A5';
 const priamryLightBlue = '#2A4BA0';
 const primaryDarkBlue = '#153075';
 const white = '#fff';
+const grey = '#EBEBFB';
 
 export default {
   greyScaleBlack05,
@@ -16,4 +17,5 @@ export default {
   white,
   greyScaleBlack06,
   greyScaleBlack03,
+  grey,
 };

@@ -11,8 +11,8 @@ import styles from './CButton.styles';
 interface Props {
   title: string;
   onPress: () => void;
-  textStyle: StyleProp<TextStyle>;
-  containerStyle: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
+  containerStyle?: StyleProp<ViewStyle>;
 }
 
 const CButton = ({title, onPress, textStyle, containerStyle}: Props) => {

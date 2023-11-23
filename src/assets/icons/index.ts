@@ -5,6 +5,8 @@ import searchIcon from './search_icon.png';
 import downArrow from './down_arrow.png';
 import rightArrow from './left_arrow.png';
 import bagIcon from './bag.png';
+import minusDarkIcon from './minus_dark.png';
+import plusDarkIcon from './plus_dark.png';
 
 export {
   HeartOnIcon,
@@ -14,4 +16,6 @@ export {
   downArrow,
   rightArrow,
   bagIcon,
+  minusDarkIcon,
+  plusDarkIcon,
 };
