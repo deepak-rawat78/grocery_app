@@ -78,6 +78,18 @@ const styles = StyleSheet.create({
   detailContainer: {
     marginHorizontal: 20,
   },
+  fullPageContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: -80,
+  },
+  errorText: {
+    fontSize: 16,
+    lineHeight: 24,
+    color: colors.greyScaleBlack02,
+    fontWeight: '400',
+  },
 });
 
 export default styles;

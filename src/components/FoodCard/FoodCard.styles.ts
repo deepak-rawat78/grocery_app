@@ -4,15 +4,14 @@ import colors from '../../assets/colors';
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.greyScaleBlack05,
-    // width: 160,
-    flex: 1,
-    height: 194,
+    flexGrow: 1,
     borderRadius: 12,
   },
   heartIcon: {height: 13, width: 14, position: 'absolute', top: 13, left: 13},
   imagePlaceholder: {
     height: 68,
     width: 68,
+    flex: 1,
   },
   imageContainer: {
     alignItems: 'center',
@@ -28,6 +27,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 16,
     color: colors.greyScaleBlack02,
+    marginTop: 4,
   },
   detailContainer: {
     flex: 1,
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 17,
     paddingRight: 21,
+    marginBottom: 20,
   },
 });
 

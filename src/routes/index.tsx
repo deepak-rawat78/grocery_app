@@ -2,8 +2,9 @@ import {View} from 'react-native';
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {tabScreensMap} from './routeUtils';
+import {Screens, tabScreensMap} from './routeUtils';
 import Home from '../views/home/Home';
+import Shopping from '../views/shopping/Shopping';
 import ProductDetail from '../views/productDetail/ProductDetail';
 
 const Stack = createNativeStackNavigator();
@@ -20,8 +21,7 @@ const HomeStack = () => {
     </Stack.Navigator>
   );
 };
-
-const index = () => {
+const tabNavigator = () => {
   return (
     <Tab.Navigator
       backBehavior="initialRoute"
@@ -31,7 +31,7 @@ const index = () => {
           headerMode: 'screen',
         };
       }}>
-      <Tab.Screen name={tabScreensMap.home} component={ProductDetail} />
+      <Tab.Screen name={tabScreensMap.home} component={HomeStack} />
       <Tab.Screen name={tabScreensMap.categories} component={EmptyStack} />
 
       <Tab.Screen name={tabScreensMap.favourite} component={EmptyStack} />
@@ -40,4 +40,14 @@ const index = () => {
   );
 };
 
-export default index;
+const navigationRoutes = () => {
+  return (
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Base" component={tabNavigator} />
+      <Stack.Screen name={Screens.PRODUCT_DETAIL} component={ProductDetail} />
+      <Stack.Screen name={Screens.SHOPPING} component={Shopping} />
+    </Stack.Navigator>
+  );
+};
+
+export default navigationRoutes;

@@ -18,3 +18,8 @@ export const routeIcons = {
   [tabScreensMap.favourite]: 'Icon',
   [tabScreensMap.more]: 'Icon',
 };
+
+export const Screens = {
+  PRODUCT_DETAIL: 'ProductDetail',
+  SHOPPING: 'Shopping',
+};

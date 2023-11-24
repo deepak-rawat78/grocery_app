@@ -1,25 +1,44 @@
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleProp,
+  ViewStyle,
+} from 'react-native';
 import React from 'react';
 import styles from './FoodCard.styles';
 import {HeartOnIcon, foodImagePlaceholder, plusIcon} from '../../assets/icons';
+import {ProductType} from '../../views/home/types';
 
-const FoodCard = ({containerStyles}) => {
+interface Props {
+  data: ProductType;
+  onPress: () => void;
+  containerStyles: StyleProp<ViewStyle>;
+}
+const FoodCard = ({data, containerStyles, onPress}: Props) => {
+  const {price, description, thumbnail} = data;
   return (
-    <View style={[styles.container, containerStyles]}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={[styles.container, containerStyles]}>
       <View style={styles.imageContainer}>
-        <Image source={foodImagePlaceholder} style={styles.imagePlaceholder} />
+        <Image
+          source={thumbnail ? {uri: thumbnail} : foodImagePlaceholder}
+          style={styles.imagePlaceholder}
+        />
         <Image source={HeartOnIcon} style={styles.heartIcon} />
       </View>
       <View style={styles.bottomContainer}>
         <View style={styles.detailContainer}>
-          <Text style={styles.price}>$34</Text>
-          <Text style={styles.description}>f jfl sj</Text>
+          <Text style={styles.price}>${price}</Text>
+          <Text style={styles.description}>{description}</Text>
         </View>
         <TouchableOpacity style={styles.plusButton}>
           <Image source={plusIcon} style={styles.plusIcon} />
         </TouchableOpacity>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

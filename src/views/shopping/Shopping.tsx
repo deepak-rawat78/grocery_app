@@ -6,17 +6,20 @@ import {rightArrow} from '../../assets/icons';
 import CButton from '../../components/CButton/CButton';
 import {PaymentDetailItem, PaymentDetailsProps} from './types';
 import CartItem from './components/CartItem/CartItem';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 interface HeaderProp {
   count: number;
+  onPressBack: () => void;
 }
 
-const Header = ({count = 0}: HeaderProp) => {
+const Header = ({count = 0, onPressBack}: HeaderProp) => {
   const {top} = useSafeAreaInsets();
 
   return (
     <View style={[styles.headerContainer, {paddingTop: top}]}>
-      <TouchableOpacity style={styles.backButton}>
+      <TouchableOpacity onPress={onPressBack} style={styles.backButton}>
         <Image source={rightArrow} style={styles.rightArrow} />
       </TouchableOpacity>
       <Text style={styles.headerText}>Shopping Cart ({count})</Text>
@@ -68,6 +71,12 @@ const ListFooterComponent = () => (
 
 const Shopping = () => {
   let count = 0;
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+
+  const handleClickOnBack = () => {
+    navigation.goBack();
+  };
+
   const onPressCheckout = () => {};
 
   const renderItem = () => {
@@ -76,7 +85,7 @@ const Shopping = () => {
 
   return (
     <View style={styles.container}>
-      <Header count={count} />
+      <Header count={count} onPressBack={handleClickOnBack} />
       <FlatList
         data={new Array(20)}
         renderItem={renderItem}
