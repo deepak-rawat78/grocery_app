@@ -1,4 +1,11 @@
-import {View, Text, TouchableOpacity, Image, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  FlatList,
+  LayoutAnimation,
+} from 'react-native';
 import React from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import styles from './Shopping.styles';
@@ -10,6 +17,7 @@ import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {ShoppingType} from './cartSlice';
 import useCartData from '../../hooks/useCartData';
+import {ProductType} from '../home/types';
 
 interface HeaderProp {
   count: number;
@@ -101,6 +109,16 @@ const Shopping = () => {
 
   const onPressCheckout = () => {};
 
+  const handleAddItem = (item: ProductType) => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
+    addToCart(item);
+  };
+
+  const handleDeleteItem = (id: number) => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
+    deleteFromCart(id);
+  };
+
   const renderItem = ({item}: {item: ShoppingType}) => {
     return (
       <CartItem
@@ -108,8 +126,8 @@ const Shopping = () => {
         count={item.count}
         image={item.productDetail.thumbnail}
         price={item.productDetail.price.toFixed(2)}
-        onAdd={() => addToCart(item.productDetail)}
-        onDelete={() => deleteFromCart(item.productDetail.id)}
+        onAdd={() => handleAddItem(item.productDetail)}
+        onDelete={() => handleDeleteItem(item.productDetail.id)}
       />
     );
   };

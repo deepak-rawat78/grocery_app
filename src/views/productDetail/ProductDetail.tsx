@@ -5,6 +5,7 @@ import {
   Text,
   ActivityIndicator,
   ScrollView,
+  Platform,
 } from 'react-native';
 import React from 'react';
 import {bagIcon, rightArrow} from '../../assets/icons';
@@ -19,6 +20,8 @@ import {useQuery} from '@tanstack/react-query';
 import {getProductDetail} from '../../service/apis/productService';
 import {ProductType} from '../home/types';
 import useCartData from '../../hooks/useCartData';
+import Carousel from '../shopping/components/Carousel/Carousel';
+import {AxiosResponse} from 'axios';
 
 const Header = ({
   onPressBack,
@@ -32,7 +35,11 @@ const Header = ({
   const {top} = useSafeAreaInsets();
 
   return (
-    <View style={[styles.headerContainer, {paddingTop: top}]}>
+    <View
+      style={[
+        styles.headerContainer,
+        {paddingTop: top + Platform.OS === 'android' ? 20 : 0},
+      ]}>
       <TouchableOpacity onPress={onPressBack} style={styles.backButton}>
         <Image source={rightArrow} style={styles.rightArrow} />
       </TouchableOpacity>
@@ -58,7 +65,7 @@ const DetailView = ({
 }: {
   isLoading: boolean;
   error: Error | null;
-  data: ProductType;
+  data?: ProductType;
   handleClickOnCart: () => void;
   handleClickOnBuyNow: () => void;
   isAddedToCart: boolean;
@@ -94,6 +101,8 @@ const DetailView = ({
         <Text style={styles.secondaryTitle}>{title}</Text>
       </Text>
       <View style={styles.detailContainer}>
+        <Carousel data={data?.images ?? []} containerStyle={styles.carousel} />
+
         <View style={styles.priceContainer}>
           <Text style={styles.priceText}>
             <Text style={styles.priceValue}>${price ?? 0}</Text>/KG
@@ -105,6 +114,7 @@ const DetailView = ({
             />
           ) : null}
         </View>
+
         <View style={styles.buttonContainer}>
           <CButton
             onPress={handleClickOnCart}
@@ -128,7 +138,7 @@ const DetailView = ({
 const ProductDetail = ({route}: any) => {
   const {id} = route?.params;
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
-  const {data, isLoading, error} = useQuery({
+  const {data, isLoading, error} = useQuery<AxiosResponse<ProductType>>({
     queryKey: ['productDetail'],
     queryFn: () => getProductDetail(id),
   });
@@ -148,7 +158,7 @@ const ProductDetail = ({route}: any) => {
     if (isAddedToCart) {
       navigateToShopping();
     } else {
-      addToCart(data?.data);
+      data?.data && addToCart(data?.data);
     }
   };
 

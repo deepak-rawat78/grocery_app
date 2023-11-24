@@ -1,27 +1,24 @@
 import {
   View,
   FlatList,
+  Dimensions,
   NativeSyntheticEvent,
   NativeScrollEvent,
   Image,
   StyleProp,
   ViewStyle,
-  Text,
 } from 'react-native';
 import React, {useState} from 'react';
-import styles from './Carousel.styles';
-import {foodImagePlaceholder} from '../../../../assets/icons';
+import styles, {CAROUSEL_DOT_WIDTH} from './styles';
 
-export const CAROUSEL_WIDTH = 0;
-
-const ItemSeparatorComponent = () => <View style={styles.separator} />;
+const {width} = Dimensions.get('window');
 
 const Carousel = ({
   data,
   containerStyle,
 }: {
   data: string[];
-  containerStyle?: StyleProp<ViewStyle>;
+  containerStyle: StyleProp<ViewStyle>;
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -37,13 +34,14 @@ const Carousel = ({
 
   const keyExtractor = (item: string) => String(item);
 
-  const renderItem = ({item}: {item: string}) => {
+  const renderDot = (_: undefined, index: number) => {
     return (
-      <View style={styles.renderItem}>
-        <Image source={foodImagePlaceholder} />
-        <Text style={styles.carouselItemText}>{item}</Text>
-      </View>
+      <View style={[styles.dot, currentIndex === index && styles.activeDot]} />
     );
+  };
+
+  const renderItem = ({item}: {item: string}) => {
+    return <Image source={{uri: item}} style={styles.renderItem} />;
   };
 
   return (
@@ -52,15 +50,22 @@ const Carousel = ({
         horizontal={true}
         data={data}
         renderItem={renderItem}
-        snapToInterval={CAROUSEL_WIDTH}
+        snapToInterval={width}
         pagingEnabled={true}
         style={styles.flatList}
         onScroll={onScroll}
         keyExtractor={keyExtractor}
         showsHorizontalScrollIndicator={false}
-        ItemSeparatorComponent={ItemSeparatorComponent}
-        contentContainerStyle={styles.contentStyle}
       />
+      <View
+        style={[
+          styles.dotsContainter,
+          {
+            width: CAROUSEL_DOT_WIDTH * data?.length + 8 * (data?.length - 1),
+          },
+        ]}>
+        {[...new Array(data?.length)].map(renderDot)}
+      </View>
     </View>
   );
 };

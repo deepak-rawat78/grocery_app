@@ -12,6 +12,8 @@ import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {Screens} from '../../routes/routeUtils';
 import useCartData from '../../hooks/useCartData';
+import Carousel from './components/Carousel/Carousel';
+import colors from '../../assets/colors';
 
 const SearchBox = ({
   value,
@@ -28,6 +30,7 @@ const SearchBox = ({
         placeholder="Search Products or store"
         onChangeText={onChangeText}
         style={styles.searchInput}
+        placeholderTextColor={colors.greyScaleBlack03}
       />
     </View>
   );
@@ -118,7 +121,7 @@ const Home = () => {
   return (
     <View style={styles.container}>
       <Header value={searchText} onChangeText={handleSearchText} />
-      <Text style={styles.recommandedText}>Recommanded</Text>
+
       <FlatList
         data={productList?.result}
         numColumns={2}
@@ -126,6 +129,18 @@ const Home = () => {
         onEndReached={onEndReached}
         onEndReachedThreshold={0.2}
         columnWrapperStyle={styles.columnWrapperStyle}
+        ListHeaderComponent={
+          <>
+            <Carousel
+              data={[
+                'Get \n50% OFaF \nOn first 03 offer',
+                'Get \n30% OFF \nOn first 05 offer',
+              ]}
+              containerStyle={styles.carousel}
+            />
+            <Text style={styles.recommandedText}>Recommanded</Text>
+          </>
+        }
       />
     </View>
   );

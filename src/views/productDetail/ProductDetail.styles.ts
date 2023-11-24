@@ -44,10 +44,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     marginTop: 30,
+    marginHorizontal: 20,
   },
   priceContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginTop: 26,
+    marginHorizontal: 20,
   },
   chip: {
     marginLeft: 14,
@@ -66,6 +69,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     color: colors.greyScaleBlack,
+    marginHorizontal: 20,
     fontWeight: '400',
     marginTop: 30,
   },
@@ -73,11 +77,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     color: colors.greyScaleBlack03,
+    marginHorizontal: 20,
     fontWeight: '400',
   },
-  detailContainer: {
-    marginHorizontal: 20,
-  },
+  detailContainer: {},
   fullPageContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -108,6 +111,9 @@ const styles = StyleSheet.create({
     lineHeight: 19,
     color: colors.white,
     fontWeight: '600',
+  },
+  carousel: {
+    marginTop: 15,
   },
 });
 

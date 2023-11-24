@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../assets/colors';
+import {fonts} from '../../assets/fonts/fonts';
 
 const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: colors.white},
@@ -26,9 +27,8 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     height: 56,
+    marginLeft: 12,
   },
-  //
-
   dropDownContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -44,10 +44,14 @@ const styles = StyleSheet.create({
     color: colors.greyScaleBlack,
     marginHorizontal: 20,
     marginTop: 27,
+    fontFamily: fonts.bold,
   },
   columnWrapperStyle: {
     marginVertical: 11,
     marginHorizontal: 8,
+  },
+  carousel: {
+    marginTop: 24,
   },
 });
 

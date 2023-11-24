@@ -14,6 +14,13 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-grocery_app-grocery_appTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-grocery_app-grocery_appTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		EEEEA6AE2B1139A500A1C710 /* Manrope-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EEEEA6A72B1139A500A1C710 /* Manrope-Medium.ttf */; };
+		EEEEA6AF2B1139A500A1C710 /* Manrope-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EEEEA6A82B1139A500A1C710 /* Manrope-Bold.ttf */; };
+		EEEEA6B02B1139A500A1C710 /* Manrope-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EEEEA6A92B1139A500A1C710 /* Manrope-ExtraLight.ttf */; };
+		EEEEA6B12B1139A500A1C710 /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EEEEA6AA2B1139A500A1C710 /* Manrope-ExtraBold.ttf */; };
+		EEEEA6B22B1139A500A1C710 /* Manrope-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EEEEA6AB2B1139A500A1C710 /* Manrope-Regular.ttf */; };
+		EEEEA6B32B1139A500A1C710 /* Manrope-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EEEEA6AC2B1139A500A1C710 /* Manrope-Light.ttf */; };
+		EEEEA6B42B1139A500A1C710 /* Manrope-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EEEEA6AD2B1139A500A1C710 /* Manrope-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +51,13 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = grocery_app/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-grocery_app-grocery_appTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-grocery_app-grocery_appTests.release.xcconfig"; path = "Target Support Files/Pods-grocery_app-grocery_appTests/Pods-grocery_app-grocery_appTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		EEEEA6A72B1139A500A1C710 /* Manrope-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Manrope-Medium.ttf"; path = "../../src/assets/fonts/Manrope-Medium.ttf"; sourceTree = "<group>"; };
+		EEEEA6A82B1139A500A1C710 /* Manrope-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Manrope-Bold.ttf"; path = "../../src/assets/fonts/Manrope-Bold.ttf"; sourceTree = "<group>"; };
+		EEEEA6A92B1139A500A1C710 /* Manrope-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Manrope-ExtraLight.ttf"; path = "../../src/assets/fonts/Manrope-ExtraLight.ttf"; sourceTree = "<group>"; };
+		EEEEA6AA2B1139A500A1C710 /* Manrope-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Manrope-ExtraBold.ttf"; path = "../../src/assets/fonts/Manrope-ExtraBold.ttf"; sourceTree = "<group>"; };
+		EEEEA6AB2B1139A500A1C710 /* Manrope-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Manrope-Regular.ttf"; path = "../../src/assets/fonts/Manrope-Regular.ttf"; sourceTree = "<group>"; };
+		EEEEA6AC2B1139A500A1C710 /* Manrope-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Manrope-Light.ttf"; path = "../../src/assets/fonts/Manrope-Light.ttf"; sourceTree = "<group>"; };
+		EEEEA6AD2B1139A500A1C710 /* Manrope-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Manrope-SemiBold.ttf"; path = "../../src/assets/fonts/Manrope-SemiBold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +130,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				EEEEA6A62B11397A00A1C710 /* Resources */,
 				13B07FAE1A68108700A75B9A /* grocery_app */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* grocery_appTests */,
@@ -146,6 +161,20 @@
 				89C6BE57DB24E9ADA2F236DE /* Pods-grocery_app-grocery_appTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		EEEEA6A62B11397A00A1C710 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EEEEA6A82B1139A500A1C710 /* Manrope-Bold.ttf */,
+				EEEEA6AA2B1139A500A1C710 /* Manrope-ExtraBold.ttf */,
+				EEEEA6A92B1139A500A1C710 /* Manrope-ExtraLight.ttf */,
+				EEEEA6AC2B1139A500A1C710 /* Manrope-Light.ttf */,
+				EEEEA6A72B1139A500A1C710 /* Manrope-Medium.ttf */,
+				EEEEA6AB2B1139A500A1C710 /* Manrope-Regular.ttf */,
+				EEEEA6AD2B1139A500A1C710 /* Manrope-SemiBold.ttf */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,8 +271,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEEEA6AF2B1139A500A1C710 /* Manrope-Bold.ttf in Resources */,
+				EEEEA6AE2B1139A500A1C710 /* Manrope-Medium.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				EEEEA6B12B1139A500A1C710 /* Manrope-ExtraBold.ttf in Resources */,
+				EEEEA6B42B1139A500A1C710 /* Manrope-SemiBold.ttf in Resources */,
+				EEEEA6B32B1139A500A1C710 /* Manrope-Light.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				EEEEA6B02B1139A500A1C710 /* Manrope-ExtraLight.ttf in Resources */,
+				EEEEA6B22B1139A500A1C710 /* Manrope-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

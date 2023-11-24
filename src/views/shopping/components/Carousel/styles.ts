@@ -1,11 +1,11 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 import colors from '../../../../assets/colors';
-import {CAROUSEL_WIDTH} from './Carousel';
 
+const {width} = Dimensions.get('window');
 export const CAROUSEL_DOT_WIDTH = 19;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {height: 207},
   flatList: {},
   dotsContainter: {
     flexDirection: 'row',
@@ -22,23 +22,8 @@ const styles = StyleSheet.create({
   },
   activeDot: {borderColor: colors.primaryDarkYellow},
   renderItem: {
-    width: CAROUSEL_WIDTH,
-    backgroundColor: colors.primaryDarkYellow,
-    borderRadius: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingVertical: 26,
-    paddingHorizontal: 22,
-  },
-  carouselItemText: {
-    fontSize: 22,
-    lineHeight: 24,
-    color: colors.white,
-  },
-  separator: {width: 20},
-  contentStyle: {
-    paddingHorizontal: 20,
+    height: 200,
+    width: width,
   },
 });
 
