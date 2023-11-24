@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   rightArrow: {height: 11, width: 6},
-  bagIcon: {height: 18, width: 16},
+  bagIcon: {height: 24, width: 22},
   backButton: {
     height: 40,
     width: 40,
@@ -89,6 +89,25 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     color: colors.greyScaleBlack02,
     fontWeight: '400',
+  },
+  cartCountContainer: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.primaryDarkYellow,
+    height: 24,
+    width: 24,
+    borderRadius: 12,
+    top: -7,
+    right: -9,
+    borderWidth: 2,
+    borderColor: colors.greyScaleBlack06,
+  },
+  cartCount: {
+    fontSize: 14,
+    lineHeight: 19,
+    color: colors.white,
+    fontWeight: '600',
   },
 });
 

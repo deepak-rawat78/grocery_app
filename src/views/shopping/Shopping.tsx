@@ -8,6 +8,8 @@ import {PaymentDetailItem, PaymentDetailsProps} from './types';
 import CartItem from './components/CartItem/CartItem';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {ShoppingType} from './cartSlice';
+import useCartData from '../../hooks/useCartData';
 
 interface HeaderProp {
   count: number;
@@ -33,15 +35,30 @@ const PaymentDetails = ({
   onPressCheckout,
 }: PaymentDetailsProps) => {
   const data = [
-    {title: 'Subtotal', value: subTotal, styles: styles.subtotal},
-    {title: 'Delivery', value: deliveyCharges, styles: styles.delivery},
-    {title: 'Total', value: subTotal + deliveyCharges, styles: styles.total},
+    {
+      title: 'Subtotal',
+      value: subTotal,
+      styles: styles.subtotal,
+      valueStyles: styles.paymentValue,
+    },
+    {
+      title: 'Delivery',
+      value: deliveyCharges,
+      styles: styles.delivery,
+      valueStyles: styles.paymentValue,
+    },
+    {
+      title: 'Total',
+      value: subTotal + deliveyCharges,
+      styles: styles.total,
+      valueStyles: [styles.paymentValue, styles.paymentTotalValue],
+    },
   ];
 
   const renderPaymentItem = (item: PaymentDetailItem) => (
     <View style={[styles.paymentItem, item.styles]}>
       <Text style={styles.paymentItemTitle}>{item.title}</Text>
-      <Text>{item.value}</Text>
+      <Text style={item.valueStyles}>${item.value.toFixed(2)}</Text>
     </View>
   );
 
@@ -49,7 +66,7 @@ const PaymentDetails = ({
     <View style={styles.paymentContainer}>
       {data.map(renderPaymentItem)}
       <CButton
-        title="Proceed  To checkout"
+        title="Proceed To checkout"
         textStyle={styles.checkoutText}
         containerStyle={styles.checkoutButton}
         onPress={onPressCheckout}
@@ -59,6 +76,10 @@ const PaymentDetails = ({
 };
 
 const ItemSeparatorComponent = () => <View style={styles.itemSeparator} />;
+
+const ListEmptyComponent = () => (
+  <Text style={styles.emptyCartText}>Your cart is empty.</Text>
+);
 
 const ListFooterComponent = () => (
   <>
@@ -70,8 +91,9 @@ const ListFooterComponent = () => (
 );
 
 const Shopping = () => {
-  let count = 0;
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  const {cartSize, addToCart, deleteFromCart, productList, totalAmount} =
+    useCartData();
 
   const handleClickOnBack = () => {
     navigation.goBack();
@@ -79,23 +101,32 @@ const Shopping = () => {
 
   const onPressCheckout = () => {};
 
-  const renderItem = () => {
-    return <CartItem />;
+  const renderItem = ({item}: {item: ShoppingType}) => {
+    return (
+      <CartItem
+        title={item.productDetail.title}
+        count={item.count}
+        image={item.productDetail.thumbnail}
+        price={item.productDetail.price.toFixed(2)}
+        onAdd={() => addToCart(item.productDetail)}
+        onDelete={() => deleteFromCart(item.productDetail.id)}
+      />
+    );
   };
 
   return (
     <View style={styles.container}>
-      <Header count={count} onPressBack={handleClickOnBack} />
+      <Header count={cartSize} onPressBack={handleClickOnBack} />
       <FlatList
-        data={new Array(20)}
+        data={productList}
         renderItem={renderItem}
         ItemSeparatorComponent={ItemSeparatorComponent}
-        ListFooterComponent={ListFooterComponent}
+        ListFooterComponent={cartSize > 0 ? ListFooterComponent : null}
         style={styles.cartList}
+        ListEmptyComponent={ListEmptyComponent}
       />
-
       <PaymentDetails
-        subTotal={0}
+        subTotal={totalAmount}
         deliveyCharges={0}
         onPressCheckout={onPressCheckout}
       />

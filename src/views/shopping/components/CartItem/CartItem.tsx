@@ -10,7 +10,7 @@ import styles from './CartItem.styles';
 interface Props {
   title: string;
   image: string;
-  price: string;
+  price: string | number;
   count: number;
   onAdd: () => void;
   onDelete: () => void;

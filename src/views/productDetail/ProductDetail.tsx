@@ -18,11 +18,14 @@ import {Screens} from '../../routes/routeUtils';
 import {useQuery} from '@tanstack/react-query';
 import {getProductDetail} from '../../service/apis/productService';
 import {ProductType} from '../home/types';
+import useCartData from '../../hooks/useCartData';
 
 const Header = ({
   onPressBack,
   onPressCart,
+  count,
 }: {
+  count: number;
   onPressBack: () => void;
   onPressCart: () => void;
 }) => {
@@ -35,6 +38,11 @@ const Header = ({
       </TouchableOpacity>
       <TouchableOpacity onPress={onPressCart}>
         <Image source={bagIcon} style={styles.bagIcon} />
+        {count ? (
+          <View style={styles.cartCountContainer}>
+            <Text style={styles.cartCount}>{count}</Text>
+          </View>
+        ) : null}
       </TouchableOpacity>
     </View>
   );
@@ -46,12 +54,14 @@ const DetailView = ({
   data,
   handleClickOnCart,
   handleClickOnBuyNow,
+  isAddedToCart,
 }: {
   isLoading: boolean;
   error: Error | null;
   data: ProductType;
   handleClickOnCart: () => void;
   handleClickOnBuyNow: () => void;
+  isAddedToCart: boolean;
 }) => {
   if (isLoading) {
     return (
@@ -98,7 +108,7 @@ const DetailView = ({
         <View style={styles.buttonContainer}>
           <CButton
             onPress={handleClickOnCart}
-            title="Add To Cart"
+            title={isAddedToCart ? 'View Cart' : 'Add To Cart'}
             containerStyle={styles.addToCartButton}
           />
           <CButton
@@ -123,19 +133,31 @@ const ProductDetail = ({route}: any) => {
     queryFn: () => getProductDetail(id),
   });
 
+  const {addToCart, cartSize, count} = useCartData(id);
+  const isAddedToCart = (count ?? 0) > 0;
+
   const handleClickOnBack = () => {
     navigation.goBack();
   };
+
   const navigateToShopping = () => {
     navigation.navigate(Screens.SHOPPING);
   };
 
-  const handleClickOnCart = () => {};
+  const handleClickOnCart = () => {
+    if (isAddedToCart) {
+      navigateToShopping();
+    } else {
+      addToCart(data?.data);
+    }
+  };
+
   const handleClickOnBuyNow = () => {};
 
   return (
     <View style={styles.container}>
       <Header
+        count={cartSize ?? 0}
         onPressBack={handleClickOnBack}
         onPressCart={navigateToShopping}
       />
@@ -145,6 +167,7 @@ const ProductDetail = ({route}: any) => {
         data={data?.data}
         handleClickOnBuyNow={handleClickOnBuyNow}
         handleClickOnCart={handleClickOnCart}
+        isAddedToCart={isAddedToCart}
       />
     </View>
   );

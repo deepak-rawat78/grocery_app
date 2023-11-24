@@ -11,6 +11,7 @@ import {ProductType} from './types';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {Screens} from '../../routes/routeUtils';
+import useCartData from '../../hooks/useCartData';
 
 const SearchBox = ({
   value,
@@ -71,6 +72,7 @@ const Home = () => {
   });
 
   const {hasNextPage, isFetchingNextPage, fetchNextPage} = result;
+  const {addToCart} = useCartData();
 
   const productList = useMemo(() => {
     if (
@@ -98,12 +100,17 @@ const Home = () => {
     navigation.navigate(Screens.PRODUCT_DETAIL, {id});
   };
 
+  const handleClickOnAddButton = (data: ProductType) => {
+    addToCart(data);
+  };
+
   const renderItem = ({item}: {item: ProductType}) => {
     return (
       <FoodCard
         data={item}
         containerStyles={styles.foodItem}
         onPress={() => handleClickOnProduct(item.id)}
+        handleClickOnAddButton={() => handleClickOnAddButton(item)}
       />
     );
   };

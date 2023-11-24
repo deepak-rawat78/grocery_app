@@ -7,6 +7,7 @@ const priamryLightBlue = '#2A4BA0';
 const primaryDarkBlue = '#153075';
 const white = '#fff';
 const grey = '#EBEBFB';
+const primaryDarkYellow = '#F9B023';
 
 export default {
   greyScaleBlack05,
@@ -18,4 +19,5 @@ export default {
   greyScaleBlack06,
   greyScaleBlack03,
   grey,
+  primaryDarkYellow,
 };

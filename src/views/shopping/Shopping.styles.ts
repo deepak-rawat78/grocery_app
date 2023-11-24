@@ -91,6 +91,22 @@ const styles = StyleSheet.create({
     marginBottom: 42,
     marginTop: 10,
   },
+  paymentValue: {
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: '500',
+    color: colors.greyScaleBlack,
+  },
+  paymentTotalValue: {
+    fontWeight: '600',
+  },
+  emptyCartText: {
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: '400',
+    color: colors.greyScaleBlack02,
+    textAlign: 'center',
+  },
 });
 
 export default styles;

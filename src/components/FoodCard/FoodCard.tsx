@@ -14,9 +14,16 @@ import {ProductType} from '../../views/home/types';
 interface Props {
   data: ProductType;
   onPress: () => void;
+  handleClickOnAddButton: () => void;
   containerStyles: StyleProp<ViewStyle>;
 }
-const FoodCard = ({data, containerStyles, onPress}: Props) => {
+
+const FoodCard = ({
+  data,
+  containerStyles,
+  handleClickOnAddButton,
+  onPress,
+}: Props) => {
   const {price, description, thumbnail} = data;
   return (
     <TouchableOpacity
@@ -34,7 +41,9 @@ const FoodCard = ({data, containerStyles, onPress}: Props) => {
           <Text style={styles.price}>${price}</Text>
           <Text style={styles.description}>{description}</Text>
         </View>
-        <TouchableOpacity style={styles.plusButton}>
+        <TouchableOpacity
+          onPress={handleClickOnAddButton}
+          style={styles.plusButton}>
           <Image source={plusIcon} style={styles.plusIcon} />
         </TouchableOpacity>
       </View>
