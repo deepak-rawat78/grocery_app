@@ -119,6 +119,8 @@ const Shopping = () => {
     deleteFromCart(id);
   };
 
+  const keyExtractor = (item: ShoppingType) => item.productDetail.id.toString();
+
   const renderItem = ({item}: {item: ShoppingType}) => {
     return (
       <CartItem
@@ -142,6 +144,7 @@ const Shopping = () => {
         ListFooterComponent={cartSize > 0 ? ListFooterComponent : null}
         style={styles.cartList}
         ListEmptyComponent={ListEmptyComponent}
+        keyExtractor={keyExtractor}
       />
       <PaymentDetails
         subTotal={totalAmount}

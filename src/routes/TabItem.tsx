@@ -16,7 +16,7 @@ const TabItem = (props: Props) => {
 
   useEffect(() => {
     Animated.timing(transformY.current, {
-      toValue: focused ? -10 : 0,
+      toValue: focused ? -30 : 0,
       duration: 200,
       useNativeDriver: true,
     }).start();

@@ -1,4 +1,11 @@
-import {View, Text, TextInput, Image, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  Image,
+  FlatList,
+  ActivityIndicator,
+} from 'react-native';
 import React, {useMemo, useState} from 'react';
 import styles from './Home.styles';
 import FoodCard from '../../components/FoodCard/FoodCard';
@@ -74,7 +81,8 @@ const Home = () => {
     },
   });
 
-  const {hasNextPage, isFetchingNextPage, fetchNextPage} = result;
+  const {hasNextPage, isFetchingNextPage, fetchNextPage, isLoading, error} =
+    result;
   const {addToCart} = useCartData();
 
   const productList = useMemo(() => {
@@ -107,6 +115,8 @@ const Home = () => {
     addToCart(data);
   };
 
+  const keyExtractor = (item: ProductType) => item.id.toString();
+
   const renderItem = ({item}: {item: ProductType}) => {
     return (
       <FoodCard
@@ -117,6 +127,21 @@ const Home = () => {
       />
     );
   };
+  console.log(result, 'result');
+  if (isLoading) {
+    return (
+      <View style={styles.fullPageContainer}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
+  if (error) {
+    return (
+      <View style={styles.fullPageContainer}>
+        <Text style={styles.errorText}>{error.message}</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -126,6 +151,7 @@ const Home = () => {
         data={productList?.result}
         numColumns={2}
         renderItem={renderItem}
+        keyExtractor={keyExtractor}
         onEndReached={onEndReached}
         onEndReachedThreshold={0.2}
         columnWrapperStyle={styles.columnWrapperStyle}
