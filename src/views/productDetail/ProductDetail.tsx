@@ -38,7 +38,7 @@ const Header = ({
     <View
       style={[
         styles.headerContainer,
-        {paddingTop: top + Platform.OS === 'android' ? 20 : 0},
+        {paddingTop: top + (Platform.OS === 'android' ? 20 : 0)},
       ]}>
       <TouchableOpacity onPress={onPressBack} style={styles.backButton}>
         <Image source={rightArrow} style={styles.rightArrow} />
